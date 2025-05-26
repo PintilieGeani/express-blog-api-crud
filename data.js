@@ -56,3 +56,5 @@ const blogPosts = [
     img: "./imgs/psicologia-7"
   }
 ];
+
+export default blogPosts

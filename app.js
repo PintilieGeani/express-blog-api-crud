@@ -1,6 +1,9 @@
 // Importo il mio express
 import express from "express"
 
+// Importo il mio router
+import router from "./router/posts.js";
+
 // Invoco la funzione di express
 const app = express()
 
@@ -18,7 +21,8 @@ app.get("/", (req, res) => {
     res.json(resData)
 })
 
-
+// Imposto il router
+app.use("/posts", router)
 
 
 
