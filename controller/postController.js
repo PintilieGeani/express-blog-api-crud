@@ -49,9 +49,8 @@ const show = (req, res) => {
 
 // Post
 const post = (req, res) => {
-    const postId = req.params.id
     const result = {
-        data: `Qui modifico il parametro con id ${postId}`
+        data: "Qui posto nuovi dati"
     }
 
     res.json(result)
@@ -60,12 +59,14 @@ const post = (req, res) => {
 
 // Update
 const update = (req, res) => {
+    const postId = req.params.id
     const result = {
-        data: "Qui posto nuovi dati"
+        data: `Qui modifico il parametro con id ${postId}`
     }
 
     res.json(result)
 }
+
 
 
 // Destroy
@@ -80,7 +81,10 @@ const destroy = (req, res) => {
     }
 
     blogPosts.splice(index, 1)
-    res.status(204).json([])
+    res.sendStatus(204)
 }
 
 export {index, show, post, update, destroy}
+
+
+
