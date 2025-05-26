@@ -1,6 +1,5 @@
-// Importo i dati
-import blogPosts from "../data.js";
-
+//Importo il controller
+import { index, show, post, update, destroy } from "../controller/postController.js"
 // Importo express
 import express from "express"
 
@@ -9,49 +8,18 @@ const router = express.Router()
 
 
 // Index
-router.get("/", (req, res) => {
-    const result = {
-        data: "Questi sono i miei post"
-    }
-    res.send(result)
-})
+router.get("/", index)
 
 // Show
-router.get("/:id", (req, res) => {
-    const postId = req.params.id;
-    
-    const result = {
-        data: `Questo è il post con numero ${postId}`
-    }
-
-    res.json(result)
-})
+router.get("/:id", show)
 
 // Post
-router.post("/", (req, res) => {
-    const result = {
-        data: "Qui posto nuovi dati"
-    }
-
-    res.json(result)
-})
+router.post("/", post)
 
 // Update
-router.post("/:id", (req, res) => {
-    const postId = req.params.id 
-    const result = {
-        data: `Qui modifico il parametro con id ${postId}`
-    }
-
-    res.json(result)
-})
+router.post("/:id", update)
 
 // Destroy
-router.delete("/:id", (req, res) => {
-    const postId = req.params.id 
-    const result = {
-        data: `Qui elimino il parametro con id ${postId}`
-    }
-})
+router.delete("/:id", destroy)
 
 export default router
