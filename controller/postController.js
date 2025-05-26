@@ -80,7 +80,7 @@ const destroy = (req, res) => {
     }
 
     blogPosts.splice(index, 1)
-    res.sendStatus(202)
+    res.status(204).json([])
 }
 
 export {index, show, post, update, destroy}
