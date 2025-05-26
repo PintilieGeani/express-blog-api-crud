@@ -21,7 +21,7 @@ const index = (req, res) => {
             })
         }
     
-    res.send({
+    res.json({
         data: postsFiltrati
     })
 }
