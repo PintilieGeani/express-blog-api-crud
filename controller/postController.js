@@ -76,11 +76,10 @@ const update = (req, res) => {
     const newObj = req.body
     
     //Aggiorniamo il post
-    newObj.titolo = req.body.titolo
-    newObj.data = req.body.data
-    newObj.contenuto = req.body.contenuto
-    newObj.tag = req.body.tag
-    newObj.img = req.body.img
+   for(let key in newObj){
+    const curKey = newObj[key]
+    filtroId[key] = curKey
+}
 
     // Controllo in console
     console.log(blogPosts)
