@@ -5,22 +5,22 @@ const index = (req, res) => {
     let postsFiltrati = blogPosts
     const filtroTag = req.query.tag;
 
-    if(filtroTag == undefined){
-        return res.send({ data : blogPosts});
+    if (filtroTag == undefined) {
+        return res.send({ data: blogPosts });
     }
 
 
     postsFiltrati = postsFiltrati.filter((curPos) => curPos.tag.includes(filtroTag));
-    
+
     if (postsFiltrati.length == 0) {
-        
-            res.status(404)
-            res.send({
-                error: "Not Found",
-                message: "Nessuna correlazione trovata"
-            })
-        }
-    
+
+        res.status(404)
+        res.send({
+            error: "Not Found",
+            message: "Nessuna correlazione trovata"
+        })
+    }
+
     res.json({
         data: postsFiltrati
     })
@@ -49,22 +49,43 @@ const show = (req, res) => {
 
 // Post
 const post = (req, res) => {
-    const result = {
-        data: "Qui posto nuovi dati"
-    }
+    const newObj = req.body
+    const findId = blogPosts[blogPosts.length - 1].id 
+    newObj.id = findId + 1
+    blogPosts.push(newObj)
 
-    res.json(result)
+    // Controllo in console dell'array intero
+    console.log(blogPosts)
+    // Res
+    res.status(201)
+    res.json(newObj)
 }
 
 
 // Update
 const update = (req, res) => {
-    const postId = req.params.id
-    const result = {
-        data: `Qui modifico il parametro con id ${postId}`
+    const postId = req.params.id;
+    let filtroId = blogPosts.find((curPost) => curPost.id === parseInt(postId))
+    if (filtroId === undefined) {
+        res.status(404)
+        res.send({
+            error: "Not Found",
+            message: "Nessuna correlazione trovata"
+        })
     }
+    const newObj = req.body
+    
+    //Aggiorniamo il post
+    newObj.titolo = req.body.titolo
+    newObj.data = req.body.data
+    newObj.contenuto = req.body.contenuto
+    newObj.tag = req.body.tag
+    newObj.img = req.body.img
 
-    res.json(result)
+    // Controllo in console
+    console.log(blogPosts)
+
+    res.json(newObj)
 }
 
 
@@ -73,7 +94,7 @@ const update = (req, res) => {
 const destroy = (req, res) => {
     const postId = req.params.id
     const index = blogPosts.findIndex((curPost) => curPost.id === parseInt(postId))
-    if(index === -1){
+    if (index === -1) {
         res.status(404)
         return res.send({
             data: "Post non trovato"
@@ -84,7 +105,7 @@ const destroy = (req, res) => {
     res.sendStatus(204)
 }
 
-export {index, show, post, update, destroy}
+export { index, show, post, update, destroy }
 
 
 

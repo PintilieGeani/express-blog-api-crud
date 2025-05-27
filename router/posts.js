@@ -17,7 +17,7 @@ router.get("/:id", show)
 router.post("/", post)
 
 // Update
-router.post("/:id", update)
+router.put("/:id", update)
 
 // Destroy
 router.delete("/:id", destroy)

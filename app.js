@@ -13,6 +13,10 @@ const port = 3000
 // Rendo pubblica la cartella delle immagini
 app.use(express.static("public"));
 
+// Body parser
+app.use(express.json());
+
+
 // Rotta principale delle api
 app.get("/", (req, res) => {
     const resData = {
